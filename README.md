@@ -1,2 +1,2 @@
 # poo-java
-Repositório da matéria POO (em Java 😔)
+Repositório da matéria POO (em Java)

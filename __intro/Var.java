@@ -7,11 +7,11 @@ public class Var {
         char c = 'c';
         String nome = "Gustavo";
 
-        System.out.println( um);
-        System.out.println(doisPontoZero);
-        System.out.println(doisPontoUm);
-        System.out.println(booleano);
-        System.out.println(c);
-        System.out.println(nome);
+        System.out.println("int um = " + um);
+        System.out.println("float doisPontoZero = " + doisPontoZero);
+        System.out.println("double doisPontoUm = " + doisPontoUm);
+        System.out.println("boolean booleano = " + booleano);
+        System.out.println("char c =" + c);
+        System.out.println("String nome = " + nome);
     }
 }

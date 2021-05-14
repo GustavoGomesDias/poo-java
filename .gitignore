@@ -1,1 +1,4 @@
 *.class
+/.metadata/
+/intro/JavaApplication1/nbproject/private/
+/intro/JavaApplication1/build/

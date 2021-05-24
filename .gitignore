@@ -4,3 +4,7 @@
 /intro/JavaApplication1/build/
 /Welcome/nbproject/private/
 /Welcome/build/
+*.xml
+*.gitignore
+*.iml
+tlvp

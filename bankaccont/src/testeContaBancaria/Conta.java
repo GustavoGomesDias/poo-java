@@ -2,22 +2,34 @@ package testeContaBancaria;
 
 public class Conta {
     // Atributos/campos -> descrição física da "conta"
-    int numero;
-    float saldo;
-
-    // Método construtor
-    public Conta(int num, float valor) {
-        numero = num;
-        saldo = valor;
-    }
+    private int numero;
+    private double saldo;
 
     // Métodos/operação/funções
-    void creditar(float valor) {
-        saldo += valor;
+
+    // Método construtor
+    public Conta(int num, double valor) {
+        this.numero = num;
+        this.saldo = valor;
     }
 
-    void debitar(float valor) {
+    // Métodos de alteração
+    public void creditar(double valor) {
+        this.saldo += valor;
+    }
 
+    public void debitar(double valor) {
+        double multa = 50.00;
+        this.saldo -= valor;
+
+        if (this.saldo < 0) {
+            this.saldo -= multa;
+        }
+    }
+
+    // Métodos de consulta
+    public double consultarSaldo() {
+        return this.saldo;
     }
 
 }

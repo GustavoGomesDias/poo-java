@@ -6,13 +6,10 @@ public class TestaTriangulo {
     public static void main(String[] args) {
         Scanner read = new Scanner(System.in);
 
-        System.out.println("Digite o lado 1: ");
         double lado1 = read.nextDouble();
 
-        System.out.println("Digite o lado 2: ");
         double lado2 = read.nextDouble();
 
-        System.out.println("Digite o lado 3: ");
         double lado3 = read.nextDouble();
 
         while(lado1 != 0 && lado2 != 0 && lado3 != 0) {
@@ -36,13 +33,10 @@ public class TestaTriangulo {
                 System.out.println("Lados nao formam um triangulo");
             }
 
-            System.out.println("Digite o lado 1: ");
             lado1 = read.nextDouble();
 
-            System.out.println("Digite o lado 2: ");
             lado2 = read.nextDouble();
 
-            System.out.println("Digite o lado 3: ");
             lado3 = read.nextDouble();
         }
     }

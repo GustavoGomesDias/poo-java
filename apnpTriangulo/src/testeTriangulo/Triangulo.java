@@ -36,19 +36,15 @@ public class Triangulo {
         boolean verificaLadoIguais2 = this.lado1 == this.lado3;
         boolean verificaLadoIguais3 = this.lado2 == this.lado3;
 
-        if(verificaLadoIguais1 && !verificaLadoIguais2 && !verificaLadoIguais3) {
+        if (verificaLadoIguais1 && !verificaLadoIguais2 && !verificaLadoIguais3) {
             return true;
-        }
-
-        if(!verificaLadoIguais1 && verificaLadoIguais2 && !verificaLadoIguais3) {
+        }else if (!verificaLadoIguais1 && verificaLadoIguais2 && !verificaLadoIguais3) {
             return true;
-        }
-
-        if(!verificaLadoIguais1 && !verificaLadoIguais2 && verificaLadoIguais3) {
+        } else if (!verificaLadoIguais1 && !verificaLadoIguais2 && verificaLadoIguais3) {
             return true;
+        } else {
+            return false;
         }
-
-        return false;
     }
 
     public boolean verificaEquilatero() {

@@ -27,12 +27,14 @@ public class Fracao {
 
     public Fracao subtrai(Fracao fracao) {
         int num, den;
+        Fracao res;
 
         den = this.denominador * fracao.denominador;
 
-        num = (den / this.denominador) * this.numerador  - (den / fracao.denominador) * fracao.numerador;
+        num = (this.numerador * fracao.denominador) - (fracao.numerador * this.denominador);
 
-        return new Fracao(num, den);
+        res = new Fracao(num, den);
+        return res;
     }
 
     public Fracao multiplica(Fracao fracao) {
@@ -54,6 +56,10 @@ public class Fracao {
     }
 
     private static int mdc(int num, int den) {
+        if (num < 0) {
+            num = num * -1;
+        }
+
         int resto = num % den;
 
         while(resto > 0) {

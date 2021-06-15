@@ -56,8 +56,12 @@ public class Fracao {
     }
 
     private static int mdc(int num, int den) {
-        if (num < 0) {
-            num = num * -1;
+        if (num < 0 || den < 0) {
+            if (num < 0) {
+                num *= -1;
+            } else {
+                den *= -1;
+            }
         }
 
         int resto = num % den;

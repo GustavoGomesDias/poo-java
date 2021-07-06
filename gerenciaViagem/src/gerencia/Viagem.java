@@ -7,6 +7,7 @@ public class Viagem {
     private float valorVendas;
 
     public Viagem() {
+        this.descricao = "";
         this.km = 0;
         this.duracao = 0;
         this.valorVendas = 0;
@@ -42,5 +43,15 @@ public class Viagem {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public float calcValorAReembolsar() {
+        if (this.km <= 150) {
+            return this.km * 0.40f;
+        } else if (this.km >= 600) {
+            return this.km * 0.38f;
+        } else {
+            return this.km * 0.35f;
+        }
     }
 }

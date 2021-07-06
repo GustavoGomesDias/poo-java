@@ -15,6 +15,9 @@ public class Vendedor {
         return this.nome;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
     public void loadViagem(Viagem viagem) {
         this.viagem.add(viagem);

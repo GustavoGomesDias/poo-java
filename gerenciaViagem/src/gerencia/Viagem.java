@@ -3,6 +3,7 @@ package gerencia;
 public class Viagem {
     private String descricao;
     private int km;
+    private int dias;
     private int duracao;
     private float valorVendas;
 
@@ -19,6 +20,14 @@ public class Viagem {
 
     public void setKm(int km) {
         this.km = km;
+    }
+
+    public int getDias() {
+        return this.dias;
+    }
+
+    public void setDias(int dias) {
+        this.dias = dias;
     }
 
     public int getDuracao() {
@@ -49,9 +58,9 @@ public class Viagem {
         if (this.km <= 150) {
             return this.km * 0.40f;
         } else if (this.km >= 600) {
-            return this.km * 0.38f;
-        } else {
             return this.km * 0.35f;
+        } else {
+            return this.km * 0.38f;
         }
     }
 }

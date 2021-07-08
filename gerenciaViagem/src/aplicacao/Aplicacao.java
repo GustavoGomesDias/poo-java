@@ -48,6 +48,7 @@ public class Aplicacao {
         }
 
         Aplicacao.relatoriosVendedores();
+        Aplicacao.relatorio();
 
     }
 
@@ -56,13 +57,25 @@ public class Aplicacao {
     }
 
     public static void relatoriosVendedores() {
-        DecimalFormat formatado = new DecimalFormat("#.##");
+        DecimalFormat formatado = new DecimalFormat("#.#######");
         if (!Aplicacao.vendedor.isEmpty()) {
             for (int i = 0; i < Aplicacao.vendedor.size(); i++) {
                 System.out.println(Aplicacao.vendedor.get(i).getNome());
                 System.out.println("Km total: " + Aplicacao.vendedor.get(i).calcValorTotalKm());
                 System.out.println("Reembolso total: " + formatado.format(Aplicacao.vendedor.get(i).calcValorTotalReembolso()));
                 System.out.println("Vendas total: " + formatado.format(Aplicacao.vendedor.get(i).calcValorTotalVendas()));
+            }
+        }
+    }
+
+    public static void relatorio() {
+        if(!Aplicacao.vendedor.isEmpty()) {
+            for (int i = 0; i < Aplicacao.vendedor.size(); i++) {
+                System.out.println(Aplicacao.vendedor.get(i).getNome());
+                System.out.println(Aplicacao.vendedor.get(i).getMenorKm());
+                System.out.println(Aplicacao.vendedor.get(i).getMaiorReembolso());
+                System.out.println(Aplicacao.vendedor.get(i).getMaiorVenda());
+                System.out.println(Aplicacao.vendedor.get(i).getMaiorDuracao());
             }
         }
     }

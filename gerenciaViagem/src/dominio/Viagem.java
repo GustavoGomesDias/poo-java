@@ -1,4 +1,4 @@
-package gerencia;
+package dominio;
 
 public class Viagem {
     private String descricao;

@@ -6,12 +6,19 @@ import java.util.LinkedList;
 import java.util.Locale;
 import java.util.Scanner;
 
-import gerencia.*;
+import dominio.*;
 
 public class Aplicacao {
     private static LinkedList<Vendedor> vendedor = new LinkedList<Vendedor>();
 
     public static void main(String[] args) throws IOException {
+        Aplicacao.setVendedores(args);
+        Aplicacao.relatoriosVendedores();
+        Aplicacao.relatorio();
+
+    }
+
+    public static void setVendedores(String[] args) {
         Scanner read = new Scanner(System.in);
 
         String nome;
@@ -46,10 +53,6 @@ public class Aplicacao {
             Aplicacao.loadVendedor(vendedor);
             nome = read.nextLine();
         }
-
-        Aplicacao.relatoriosVendedores();
-        Aplicacao.relatorio();
-
     }
 
     public static void loadVendedor(Vendedor vendedor) {
@@ -57,7 +60,8 @@ public class Aplicacao {
     }
 
     public static void relatoriosVendedores() {
-        DecimalFormat formatado = new DecimalFormat("#.#######");
+        DecimalFormat formatado = new DecimalFormat("#.##");
+        formatado.setMaximumFractionDigits(2);
         if (!Aplicacao.vendedor.isEmpty()) {
             for (int i = 0; i < Aplicacao.vendedor.size(); i++) {
                 System.out.println(Aplicacao.vendedor.get(i).getNome());

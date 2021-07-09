@@ -1,4 +1,4 @@
-package gerencia;
+package dominio;
 
 import java.text.DecimalFormat;
 import java.util.LinkedList;
@@ -62,11 +62,12 @@ public class Vendedor {
                 descricao = viagem.getDescricao();
             }
         }
-        return "Maior km: " + descricao + " " + menorKm + " km";
+        return "Menor km: " + descricao + " " + menorKm + " km";
     }
 
     public String getMaiorReembolso() {
-        DecimalFormat formatado = new DecimalFormat("#.######");
+        DecimalFormat formatado = new DecimalFormat("#.##");
+        formatado.setMaximumFractionDigits(2);
         float maiorReembolso = this.viagem.getFirst().calcValorAReembolsar();
         String descricao = this.viagem.getFirst().getDescricao();
         for (Viagem viagem : this.viagem) {
@@ -80,7 +81,8 @@ public class Vendedor {
     }
 
     public String getMaiorVenda() {
-        DecimalFormat formatado = new DecimalFormat("#.######");
+        DecimalFormat formatado = new DecimalFormat("#.##");
+        formatado.setMaximumFractionDigits(2);
         float maiorVendas = this.viagem.getFirst().getValorVendas();
         String descricao = this.viagem.getFirst().getDescricao();
         for (Viagem viagem : this.viagem) {

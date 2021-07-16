@@ -24,6 +24,10 @@ public class Vendedor {
         this.viagem.add(viagem);
     }
 
+    public boolean ViagemListIsEmpty () {
+        return this.viagem.isEmpty();
+    }
+
     public float calcValorTotalReembolso() {
         float totalReembolso = 0;
         // forEach => mesmas coisa que usar o for (int i = 0; i < list.size(); i++), só que de forma simplificada

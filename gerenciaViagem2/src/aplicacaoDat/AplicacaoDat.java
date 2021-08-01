@@ -1,28 +1,22 @@
 package aplicacaoDat;
 
+import dominio.Vendedor;
+import dominio.Viagem;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.IOException;
-
-
-import dominio.*;
 
 public class AplicacaoDat {
     private static ArrayList<Vendedor> vendedores = new ArrayList<Vendedor>();
+    private static String path = System.getProperty("user.dir");
 
     public static void main(String[] args) {
-        if (!AplicacaoDat.getFileDat().equals("")) {
-            AplicacaoDat.desserealizaDat();
-        } else {
+        if (AplicacaoDat.getFileTxt("input").equals("") || AplicacaoDat.getFileTxt("input") == null) {
             AplicacaoDat.setVendedores(args);
             AplicacaoDat.serealizaDat(args);
-            AplicacaoDat.desserealizaDat();
         }
+        AplicacaoDat.desserealizaDat();
     }
 
     public static void serealizaDat(String[] args) {
@@ -33,12 +27,15 @@ public class AplicacaoDat {
             System.out.println("Digite o nome do arquivo:");
             String nomeArq = read.next();
 
-            File arq = new File(nomeArq + ".dat");
+            new File(AplicacaoDat.path + "/input/").mkdir();
+
+            File arq = new File(AplicacaoDat.path + "/input/" + nomeArq + ".txt");
+
             FileOutputStream newArq = new FileOutputStream(arq);
             ObjectOutputStream obj = new ObjectOutputStream(newArq);
             obj.writeObject(AplicacaoDat.vendedores);
             obj.close();
-            System.out.println("Objeto gravado com sucesso!");
+            System.out.println("Arquivo gravado com sucesso!");
             AplicacaoDat.vendedores.clear();
         } catch (IOException error) {
             System.out.println(error.getMessage());
@@ -47,7 +44,7 @@ public class AplicacaoDat {
 
     public static void desserealizaDat() {
         try {
-            File arq = new File(AplicacaoDat.getFileDat());
+            File arq = new File("input/" + AplicacaoDat.getFileTxt("input"));
             if (arq.exists()) {
                 FileInputStream inputArq = new FileInputStream(arq);
                 ObjectInputStream objArq = new ObjectInputStream(inputArq);
@@ -62,13 +59,13 @@ public class AplicacaoDat {
         }
     }
 
-    public static String getFileDat() {
-        String path = System.getProperty("user.dir");
-        File file = new File(path);
+    public static String getFileTxt(String option) {
+        File file = new File(AplicacaoDat.path + "/" + option);
+        if (!file.exists()) return "";
         String arqv = "";
         File[] arqs = file.listFiles();
         for(File f : arqs) {
-            if (f.getName().contains(".dat")) {
+            if (f.getName().contains(".txt")) {
                 arqv = f.getName();
             }
         }
@@ -115,13 +112,43 @@ public class AplicacaoDat {
     }
 
     public static void relatorio() {
-        if (!AplicacaoDat.vendedores.isEmpty()) {
-            for (Vendedor vendedor : AplicacaoDat.vendedores) {
-                System.out.println("Nome: " + vendedor.getNome());
-                System.out.println("Valor de reembolso: " + vendedor.calcValorTotalReembolso());
+        try {
+            Scanner read = new Scanner(System.in);
+            read.useDelimiter("\n");
+
+            FileWriter file;
+
+            if (AplicacaoDat.getFileTxt("output").equals("")) {
+                System.out.println("Digite o nome do arquivo:");
+                String nomeArq = read.next();
+                new File(AplicacaoDat.path + "/output/").mkdir();
+                String output = AplicacaoDat.path + "/output";
+                file = new FileWriter(output + "/" + nomeArq + ".txt", true);
+
+            } else {
+                file = new FileWriter(AplicacaoDat.getFileTxt("output"), true);
             }
-        } else {
-            System.out.println("Lista vazia!");
+
+            BufferedWriter bufferedWriter = new BufferedWriter(file);
+
+            if (!AplicacaoDat.vendedores.isEmpty()) {
+                for (Vendedor vendedor : AplicacaoDat.vendedores) {
+                    bufferedWriter.write("Nome: " + vendedor.getNome());
+                    bufferedWriter.newLine();
+                    bufferedWriter.write("Vendas total: " + vendedor.calcValorTotalVendas());
+                    bufferedWriter.newLine();
+                    bufferedWriter.write("Valor de reembolso: " + vendedor.calcValorTotalReembolso());
+                    bufferedWriter.newLine();
+                    bufferedWriter.write("Km total: " + vendedor.calcValorTotalKm());
+                    bufferedWriter.newLine();
+                }
+            } else {
+                System.out.println("Lista vazia!");
+            }
+            bufferedWriter.close();
+            file.close();
+        } catch (IOException error) {
+            System.out.println(error.getMessage());
         }
     }
 }

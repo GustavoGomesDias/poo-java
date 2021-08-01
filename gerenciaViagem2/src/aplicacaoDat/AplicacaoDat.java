@@ -16,14 +16,24 @@ public class AplicacaoDat {
     private static ArrayList<Vendedor> vendedores = new ArrayList<Vendedor>();
 
     public static void main(String[] args) {
-        AplicacaoDat.setVendedores(args);
-        AplicacaoDat.serealizaDat();
-        AplicacaoDat.desserealizaDat();
+        if (!AplicacaoDat.getFileDat().equals("")) {
+            AplicacaoDat.desserealizaDat();
+        } else {
+            AplicacaoDat.setVendedores(args);
+            AplicacaoDat.serealizaDat(args);
+            AplicacaoDat.desserealizaDat();
+        }
     }
 
-    public static void serealizaDat() {
+    public static void serealizaDat(String[] args) {
         try {
-            File arq = new File("vendedores.dat");
+            Scanner read = new Scanner(System.in);
+            read.useDelimiter("\n");
+
+            System.out.println("Digite o nome do arquivo:");
+            String nomeArq = read.next();
+
+            File arq = new File(nomeArq + ".dat");
             FileOutputStream newArq = new FileOutputStream(arq);
             ObjectOutputStream obj = new ObjectOutputStream(newArq);
             obj.writeObject(AplicacaoDat.vendedores);
@@ -37,7 +47,7 @@ public class AplicacaoDat {
 
     public static void desserealizaDat() {
         try {
-            File arq = new File("vendedores.dat");
+            File arq = new File(AplicacaoDat.getFileDat());
             if (arq.exists()) {
                 FileInputStream inputArq = new FileInputStream(arq);
                 ObjectInputStream objArq = new ObjectInputStream(inputArq);
@@ -50,6 +60,19 @@ public class AplicacaoDat {
         } catch (IOException | ClassNotFoundException error) {
             System.out.println(error.getMessage());
         }
+    }
+
+    public static String getFileDat() {
+        String path = System.getProperty("user.dir");
+        File file = new File(path);
+        String arqv = "";
+        File[] arqs = file.listFiles();
+        for(File f : arqs) {
+            if (f.getName().contains(".dat")) {
+                arqv = f.getName();
+            }
+        }
+        return arqv;
     }
 
     public static void setVendedores(String[] args) {
@@ -91,10 +114,11 @@ public class AplicacaoDat {
         AplicacaoDat.vendedores.add(vendedor);
     }
 
-    public static void relatorio () {
+    public static void relatorio() {
         if (!AplicacaoDat.vendedores.isEmpty()) {
             for (Vendedor vendedor : AplicacaoDat.vendedores) {
-                System.out.println(vendedor.getNome());
+                System.out.println("Nome: " + vendedor.getNome());
+                System.out.println("Valor de reembolso: " + vendedor.calcValorTotalReembolso());
             }
         } else {
             System.out.println("Lista vazia!");

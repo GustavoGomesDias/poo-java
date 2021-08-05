@@ -1,5 +1,6 @@
 package dominio;
 
+import java.text.DecimalFormat;
 import java.util.LinkedList;
 import java.io.Serializable;
 
@@ -54,5 +55,62 @@ public class Vendedor implements Serializable {
         }
 
         return totalVendas;
+    }
+
+    public String getMenorKm() {
+        int menorKm = this.viagem.getFirst().getKm();
+        String descricao = this.viagem.getFirst().getDescricao();
+
+        for (Viagem viagem : this.viagem) {
+            if (viagem.getKm() < menorKm) {
+                menorKm = viagem.getKm();
+                descricao = viagem.getDescricao();
+            }
+        }
+        return "Menor km: " + descricao + " " + menorKm + " km";
+    }
+
+    public String getMaiorReembolso() {
+        DecimalFormat formatado = new DecimalFormat("#.##");
+        formatado.setMaximumFractionDigits(2);
+        float maiorReembolso = this.viagem.getFirst().calcValorAReembolsar();
+        String descricao = this.viagem.getFirst().getDescricao();
+        for (Viagem viagem : this.viagem) {
+            if (viagem.calcValorAReembolsar() > maiorReembolso) {
+                maiorReembolso = viagem.calcValorAReembolsar();
+                descricao = viagem.getDescricao();
+            }
+        }
+
+        return "Maior reembolso: " +  descricao + " R$ " + formatado.format(maiorReembolso);
+    }
+
+    public String getMaiorVenda() {
+        DecimalFormat formatado = new DecimalFormat("#.##");
+        formatado.setMaximumFractionDigits(2);
+        formatado.setMinimumFractionDigits(2);
+        float maiorVendas = this.viagem.getFirst().getValorVendas();
+        String descricao = this.viagem.getFirst().getDescricao();
+        for (Viagem viagem : this.viagem) {
+            if (viagem.getValorVendas() > maiorVendas) {
+                maiorVendas = viagem.getValorVendas();
+                descricao = viagem.getDescricao();
+            }
+        }
+
+        return "Maior venda: " +  descricao + " R$ " + formatado.format(maiorVendas);
+    }
+
+    public String getMaiorDuracao() {
+        int maiorDias = this.viagem.getFirst().getDias();
+        String descricao = this.viagem.getFirst().getDescricao();
+        for (Viagem viagem : this.viagem) {
+            if (viagem.getDias() > maiorDias) {
+                maiorDias = viagem.getDias();
+                descricao = viagem.getDescricao();
+            }
+        }
+
+        return "Maior duracao: " +  descricao + " " + maiorDias + " dias";
     }
 }

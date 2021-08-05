@@ -2,6 +2,7 @@ package aplicacaoDat;
 
 import dominio.Vendedor;
 import dominio.Viagem;
+import manipulaArq.ManipuladorArq;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -12,11 +13,8 @@ public class AplicacaoDat {
     private static String path = System.getProperty("user.dir");
 
     public static void main(String[] args) {
-        if (AplicacaoDat.getFileTxt("input").equals("") || AplicacaoDat.getFileTxt("input") == null) {
-            AplicacaoDat.setVendedores(args);
-            AplicacaoDat.serealizaDat(args);
-        }
-        AplicacaoDat.desserealizaDat();
+        ManipuladorArq arq = new ManipuladorArq("input", "output");
+        arq.leitor();
     }
 
     public static void serealizaDat(String[] args) {

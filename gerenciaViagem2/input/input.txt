@@ -1,0 +1,67 @@
+Joao da Silva
+40
+Lojas Guarapari
+3
+500.00
+155
+Shopping Vitoria
+1
+130.00
+100
+Polo de Modas Colatina
+5
+620.00
+0
+Flavio Souza
+39
+Bazar Pedra Azul
+10
+900.00
+0
+Mariela Cunha
+38
+Anchieta Lojas
+5
+390.90
+0
+Carlos
+0
+Mauricio Joao da Silva
+43
+Lojas Mugi
+3
+1500.00
+155
+Shopping Center Alta Vista
+12
+330.00
+1000
+Polo de Modas Guararapes
+15
+1320.00
+0
+Maria Lins Alvez
+45
+Pitanga Nativa
+100
+359.00
+38
+Lojas Juventus
+13
+5300.00
+159
+Shopping Iguatemi
+17
+2130.00
+24
+Modas Center Vale do Canaa
+37
+322.50
+0
+Gil Mendes
+28
+Canoa Quebrada
+18
+949.50
+0
+fim

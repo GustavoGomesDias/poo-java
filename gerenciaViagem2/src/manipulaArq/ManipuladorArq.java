@@ -11,7 +11,7 @@ import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
 
 public class ManipuladorArq {
-    private ArrayList<Vendedor> vendedores = new ArrayList<Vendedor>();
+    private ArrayList<Vendedor> vendedores;
     public String inputFile;
     public String outputFile;
     public String path;
@@ -20,17 +20,18 @@ public class ManipuladorArq {
         this.path = System.getProperty("user.dir");
         this.inputFile = inputFile + ".txt";
         this.outputFile = outputFile + ".txt";
+        this.vendedores = new ArrayList<Vendedor>();
     }
 
     public void leitorDeDados() {
         try {
-            File file = new File(this.path + "/input/" + this.inputFile);
+            File file = new File(this.path + "/src/" + this.inputFile);
             if (!file.exists()) {
                 System.out.println("Arquivo de entrada não existente!");
                 return;
             }
 
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(this.path + "/input/" + this.inputFile));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(this.path + "/src/" + this.inputFile));
             String nome = "";
             nome = bufferedReader.readLine();
             while(!nome.equalsIgnoreCase("fim")) {
@@ -70,7 +71,7 @@ public class ManipuladorArq {
 
     public void escritorDeRelatorios() {
         try {
-            File file = new File(this.path + "/output/" + this.outputFile);
+            File file = new File(this.path + "/src/" + this.outputFile);
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, true));
             DecimalFormat formato = new DecimalFormat("#.##");
             formato.setMaximumFractionDigits(2);

@@ -17,17 +17,21 @@ public class ManipuladorArq {
     public String path;
 
     public ManipuladorArq(String inputFile, String outputFile) {
-        this.path = System.getProperty("user.dir");
-        this.inputFile = inputFile + ".txt";
-        this.outputFile = outputFile + ".txt";
-        this.vendedores = new ArrayList<Vendedor>();
+        try {
+            this.path = new File(".").getCanonicalPath();
+            this.inputFile = inputFile + ".txt";
+            this.outputFile = outputFile + ".txt";
+            this.vendedores = new ArrayList<Vendedor>();
+        } catch (IOException err) {
+            System.out.println("Error constructor" + err.getMessage());
+        }
     }
 
     public void leitorDeDados() {
         try {
             File file = new File(this.path + "/src/" + this.inputFile);
             if (!file.exists()) {
-                System.out.println("Arquivo de entrada não existente!");
+                System.out.println("Arquivo de entrada nao existente!");
                 return;
             }
 
@@ -80,7 +84,7 @@ public class ManipuladorArq {
                 if (vendedor.ViagemListIsEmpty()) {
                     bufferedWriter.write("-----------------------------------------------\n");
                     bufferedWriter.write("Nome: " + vendedor.getNome() + "\n");
-                    bufferedWriter.write("Não tem viagens cadastradas.");
+                    bufferedWriter.write("Nao tem viagens cadastradas.");
                     bufferedWriter.write("\n-----------------------------------------------\n");
                 } else {
                     bufferedWriter.write("Nome: " + vendedor.getNome() + "\n");
@@ -96,7 +100,7 @@ public class ManipuladorArq {
 
             }
             bufferedWriter.close();
-            System.out.println("Relatório criado com sucesso! Está no diretório: " + file.getAbsolutePath());
+            System.out.println("Relatorio criado com sucesso. Esta no diretorio: " + file.getAbsolutePath());
         } catch (IOException error) {
             System.out.println("Error output message: " + error.getMessage());
         }

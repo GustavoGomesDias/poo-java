@@ -1,11 +1,11 @@
-package aplicacaoDat;
+package aplicacaoTxt;
 
-import manipulaArq.ManipuladorArq;
+import manipulaArq.ManipuladorTxt;
 
 import java.io.File;
 import java.io.IOException;
 
-public class AplicacaoDat {
+public class AplicacaoTxt {
     public static void main(String[] args) {
         try {
             String input, output;
@@ -21,7 +21,7 @@ public class AplicacaoDat {
                 }
                 output = new File("./output.txt").getCanonicalPath();
             }
-            ManipuladorArq arq = new ManipuladorArq(input, output);
+            ManipuladorTxt arq = new ManipuladorTxt(input, output);
             arq.leitorDeDados();
             arq.escritorDeRelatorios();
         } catch (IOException err) {

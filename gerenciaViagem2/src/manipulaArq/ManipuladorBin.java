@@ -13,12 +13,16 @@ public class ManipuladorBin extends ManipuladorArq {
         this.outputPath = outputPath;
     }
 
-    public void serealizaBin() {
+    public void serealizaBin(ArrayList<Vendedor> vendedorList) {
         try {
             File arq = new File(this.outputPath + "/VendedoresVendas.bin");
             FileOutputStream newArq = new FileOutputStream(arq);
             ObjectOutputStream obj = new ObjectOutputStream(newArq);
-            obj.writeObject(this.vendedores);
+            if (!vendedorList.isEmpty()) {
+                obj.writeObject(vendedorList);
+            } else {
+                obj.writeObject(this.vendedores);
+            }
             obj.close();
             System.out.println("Arquivo gravado com sucesso!");
         } catch (IOException error) {
@@ -28,6 +32,7 @@ public class ManipuladorBin extends ManipuladorArq {
 
     public  void desserealizaBin() {
         try {
+            if (this.vendedores.size() > 0) this.vendedores.clear();
             File arq = new File(this.outputPath + "/VendedoresVendas.bin");
             if (arq.exists()) {
                 FileInputStream inputArq = new FileInputStream(arq);

@@ -6,13 +6,11 @@ public class Viagem implements Serializable {
     private String descricao;
     private int km;
     private int dias;
-    private int duracao;
     private float valorVendas;
 
     public Viagem() {
         this.descricao = "";
         this.km = 0;
-        this.duracao = 0;
         this.valorVendas = 0;
     }
 
@@ -30,14 +28,6 @@ public class Viagem implements Serializable {
 
     public void setDias(int dias) {
         this.dias = dias;
-    }
-
-    public int getDuracao() {
-        return duracao;
-    }
-
-    public void setDuracao(int duracao) {
-        this.duracao = duracao;
     }
 
     public float getValorVendas() {

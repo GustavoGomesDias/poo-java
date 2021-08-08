@@ -1,23 +1,21 @@
-package aplicacaoTxt;
+package aplicacaoJson;
 
 import manipulaArq.ManipuladorBin;
 import manipulaArq.ManipuladorJSON;
-import manipulaArq.ManipuladorTxt;
 
 import java.io.File;
 import java.io.IOException;
 
-public class AplicacaoTxt {
+public class AplicacaoJSON {
     public static void main(String[] args) {
-        AplicacaoTxt.run(args);
+        AplicacaoJSON.run(args);
     }
 
     public static void run(String[] args) {
         try {
-            String input, output, outputPath;
+            String input, outputPath;
             if (args.length > 0) {
                 input = args[0];
-                output = args[1];
             } else {
                 File file = new File("./input.txt");
                 input = file.getCanonicalPath();
@@ -25,7 +23,6 @@ public class AplicacaoTxt {
                     System.out.println("Arquivo de entrada não existe");
                     return;
                 }
-                output = new File("./output.txt").getCanonicalPath();
             }
 
             if (args.length > 0 && !args[1].isEmpty()) {
@@ -33,17 +30,12 @@ public class AplicacaoTxt {
             } else {
                 outputPath = ".";
             }
-            ManipuladorTxt arq = new ManipuladorTxt(input, output);
-            ManipuladorJSON json = new ManipuladorJSON(input, outputPath, "VendedoresVendas1.json");
+            ManipuladorJSON json = new ManipuladorJSON(input, outputPath,"VendedoresVendas2.json");
             ManipuladorBin bin = new ManipuladorBin(input, outputPath);
-
-            arq.leitorDeDados();
-            arq.escritorDeRelatorios();
-            json.toJSON(arq.getVendedores());
-            bin.serealizaBin(arq.getVendedores());
+            bin.desserealizaBin();
+            json.toJSON(bin.getVendedores());
         } catch (IOException err) {
-            System.out.println("Error main: " + err.getMessage());
+            System.out.println("Error Aplicacao JSON: " + err.getMessage());
         }
-
     }
 }

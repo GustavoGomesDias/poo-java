@@ -62,4 +62,9 @@ public class ManipuladorArq {
             System.out.println("Error input message: " + error.getMessage());
         }
     }
+
+    public ArrayList<Vendedor> getVendedores() {
+        return this.vendedores;
+    }
+
 }

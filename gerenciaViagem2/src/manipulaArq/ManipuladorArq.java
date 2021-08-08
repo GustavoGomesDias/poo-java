@@ -14,28 +14,22 @@ public class ManipuladorArq {
     private ArrayList<Vendedor> vendedores;
     public String inputFile;
     public String outputFile;
-    public String path;
 
     public ManipuladorArq(String inputFile, String outputFile) {
-        try {
-            this.path = new File(".").getCanonicalPath();
-            this.inputFile = inputFile + ".txt";
-            this.outputFile = outputFile + ".txt";
-            this.vendedores = new ArrayList<Vendedor>();
-        } catch (IOException err) {
-            System.out.println("Error constructor" + err.getMessage());
-        }
+        this.inputFile = inputFile;
+        this.outputFile = outputFile;
+        this.vendedores = new ArrayList<Vendedor>();
     }
 
     public void leitorDeDados() {
         try {
-            File file = new File(this.path + "/src/" + this.inputFile);
+            File file = new File(this.inputFile);
             if (!file.exists()) {
                 System.out.println("Arquivo de entrada nao existente!");
                 return;
             }
 
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(this.path + "/src/" + this.inputFile));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(this.inputFile));
             String nome = "";
             nome = bufferedReader.readLine();
             while(!nome.equalsIgnoreCase("fim")) {
@@ -75,7 +69,7 @@ public class ManipuladorArq {
 
     public void escritorDeRelatorios() {
         try {
-            File file = new File(this.path + "/src/" + this.outputFile);
+            File file = new File(this.outputFile);
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, true));
             DecimalFormat formato = new DecimalFormat("#.##");
             formato.setMaximumFractionDigits(2);
